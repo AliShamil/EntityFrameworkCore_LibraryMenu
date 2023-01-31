@@ -12,22 +12,22 @@ namespace EntityFrameworkCore_LibraryMenu.Contexts;
 
 public class ContextDbLibrary : DbContext
 {
-    //private readonly string _connectionString;
-    //public ContextDbLibrary(string connectionString)
-    //{
-    //    _connectionString = connectionString;
-    //}
+    private readonly string _connectionString;
+    public ContextDbLibrary(string connectionString)
+    {
+        _connectionString = connectionString;
+    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        IConfigurationRoot configuration = new ConfigurationBuilder()
-.SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-.AddJsonFile("appsettings.json")
-.Build();
+//        IConfigurationRoot configuration = new ConfigurationBuilder()
+//.SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+//.AddJsonFile("appsettings.json")
+//.Build();
 
-        var conStr = configuration.GetConnectionString("ConStrLib");
+//        var conStr = configuration.GetConnectionString("ConStrLib");
 
-        optionsBuilder.UseSqlServer(conStr);
+        optionsBuilder.UseSqlServer(_connectionString);
 
         
         base.OnConfiguring(optionsBuilder);
